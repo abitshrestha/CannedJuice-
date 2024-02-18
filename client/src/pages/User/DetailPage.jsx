@@ -19,7 +19,6 @@ const DetailPage = () => {
             setFruitJuice(response.data.fruitJuice);
         }
         getSingleJuice();
-        // console.log(storedCart);
     }, [slug]);
 
     return (
