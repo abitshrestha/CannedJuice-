@@ -17,7 +17,7 @@ const AddCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:8085/category', { name });
+            const { data } = await axios.post('https://cannedjuice-backend.onrender.com/category', { name });
             if (data?.success) {
                 toast.success(`${name} is created.`);
                 getAllCategory();
@@ -33,7 +33,7 @@ const AddCategory = () => {
     //getting all category
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8085/category');
+            const { data } = await axios.get('https://cannedjuice-backend.onrender.com/category');
             if (data.success) {
                 setCategories(data.categories);
             }
@@ -52,7 +52,7 @@ const AddCategory = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.put(`http://localhost:8085/category/${selected._id}`, { name: updatedName });
+            const { data } = await axios.put(`https://cannedjuice-backend.onrender.com/category/${selected._id}`, { name: updatedName });
             if (data.success) {
                 toast.success(`${updatedName} updated successfully.`);
                 setSelected(null);
@@ -71,7 +71,7 @@ const AddCategory = () => {
     //delete category
     const handleDelete = async (pId) => {
         try {
-            const { data } = await axios.delete(`http://localhost:8085/category/${pId}`);
+            const { data } = await axios.delete(`https://cannedjuice-backend.onrender.com/category/${pId}`);
             if (data.success) {
                 toast.success(`Category is deleted.`);
                 getAllCategory();

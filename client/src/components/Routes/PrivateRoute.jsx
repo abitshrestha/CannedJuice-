@@ -9,7 +9,7 @@ export default function PrivateRoute(){
     const [auth]=useAuth();
     useEffect(()=>{
         const authCheck=async()=>{
-            const res=await axios.get('http://localhost:8085/user-auth');      
+            const res=await axios.get('https://cannedjuice-backend.onrender.com/user-auth');      
             if(res.data.ok){
                 setOk(true);
             }else{

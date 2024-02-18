@@ -66,7 +66,7 @@ const CheckoutPage = () => {
             };
             try {
                 const response = await axios.post(
-                    `http://localhost:8085/orders`,
+                    `https://cannedjuice-backend.onrender.com/orders`,
                     orderData
                 );
                 if(response.status===201){

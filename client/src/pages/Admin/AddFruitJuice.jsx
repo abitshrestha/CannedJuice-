@@ -22,7 +22,7 @@ const AddFruitJuice = () => {
     //get all category
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8085/category');
+            const { data } = await axios.get('https://cannedjuice-backend.onrender.com/category');
             if (data?.success) {
                 setCategories(data?.categories);
             }

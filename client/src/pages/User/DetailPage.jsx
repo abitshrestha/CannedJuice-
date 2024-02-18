@@ -15,7 +15,7 @@ const DetailPage = () => {
 
     useEffect(() => {
         async function getSingleJuice() {
-            const response = await axios.get(`http://localhost:8085/fruitJuices/${slug}`);
+            const response = await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuices/${slug}`);
             setFruitJuice(response.data.fruitJuice);
         }
         getSingleJuice();
@@ -29,7 +29,7 @@ const DetailPage = () => {
                     <Row>
                         <Col md={6}>
                             <Card>
-                                <Card.Img variant="top" src={`http://localhost:8085/fruitJuice/fruit-photo/${fruitJuice._id}`} />
+                                <Card.Img variant="top" src={`https://cannedjuice-backend.onrender.com/fruitJuice/fruit-photo/${fruitJuice._id}`} />
                             </Card>
                         </Col>
                         <Col md={6}>

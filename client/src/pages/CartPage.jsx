@@ -106,7 +106,7 @@ const CartPage = () => {
                             cart?.map(fruitJuice => (
                                 <div className='row mb-2 card flex-row p-4' key={fruitJuice._id}>
                                     <div className='col-md-3'>
-                                        <img src={`http://localhost:8085/fruitjuice/fruit-photo/${fruitJuice._id}`} className='card-img-top cartImage' alt={fruitJuice.name} />
+                                        <img src={`https://cannedjuice-backend.onrender.com/fruitjuice/fruit-photo/${fruitJuice._id}`} className='card-img-top cartImage' alt={fruitJuice.name} />
                                     </div>
                                     <div className='col-md-9'>
                                         <p>{fruitJuice.name}</p>

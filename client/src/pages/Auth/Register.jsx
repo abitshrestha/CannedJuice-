@@ -17,7 +17,7 @@ const Register = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try {
-            const {data}=await axios.post(`http://localhost:8085/signup`,({username,email,password,phone,address}));
+            const {data}=await axios.post(`https://cannedjuice-backend.onrender.com/signup`,({username,email,password,phone,address}));
             if(data.success){
                 toast.success(data.message);
                 navigate('/login');

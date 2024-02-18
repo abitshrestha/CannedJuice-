@@ -14,7 +14,7 @@ const HomePage = () => {
   //get total fruitJuices
   const getTotal=async()=>{
     try {
-      const {data}=await axios.get('http://localhost:8085/fruitJuice-count');
+      const {data}=await axios.get('https://cannedjuice-backend.onrender.com/fruitJuice-count');
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -25,7 +25,7 @@ const HomePage = () => {
   const getFruitJuices = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`http://localhost:8085/fruitJuicesList/${page}`);
+      const { data } = await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuicesList/${page}`);
       setLoading(false);
       setFruitJuices(data.fruitJuices);
     } catch (error) {
@@ -42,7 +42,7 @@ const HomePage = () => {
   const loadMore=async()=>{
     try {
       setLoading(true);
-      const {data}=await axios.get(`http://localhost:8085/fruitJuicesList/${page}`);
+      const {data}=await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuicesList/${page}`);
       setLoading(false);
       //making new array concatenating different objects  
       setFruitJuices([...fruitJuices,...data?.fruitJuices]);
@@ -77,7 +77,7 @@ const HomePage = () => {
               {
                 fruitJuices?.map(fruitJuice => (
                   <div className="card m-2" style={{ width: '18rem' }} key={fruitJuice._id}>
-                    <img src={`http://localhost:8085/fruitJuice/fruit-photo/${fruitJuice._id}`} className="card-img-top" alt={fruitJuice.name} />
+                    <img src={`https://cannedjuice-backend.onrender.com/fruitJuice/fruit-photo/${fruitJuice._id}`} className="card-img-top" alt={fruitJuice.name} />
                     <div className="card-body">
                       <h5 className="card-title">{fruitJuice.name}</h5>
                       <p className="card-text">{fruitJuice.description.substring(0, 30)}...</p>

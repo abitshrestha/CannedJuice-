@@ -10,7 +10,7 @@ export default function AdminRoute(){
     useEffect(()=>{
         const authCheck=async()=>{
             try {
-                const res=await axios.get('http://localhost:8085/admin-auth');      
+                const res=await axios.get('https://cannedjuice-backend.onrender.com/admin-auth');      
                 if(res.data && res.data.ok){
                     setOk(true);
                 }else{

@@ -9,7 +9,7 @@ const FruitJuices = () => {
     const [fruitJuices, setFruitJuices] = useState([]);
     const getAllProducts = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8085/fruitJuices');
+            const { data } = await axios.get('https://cannedjuice-backend.onrender.com/fruitJuices');
             setFruitJuices(data.fruitJuices);
         } catch (error) {
             console.log(error);
@@ -32,7 +32,7 @@ const FruitJuices = () => {
                             {fruitJuices?.map(fruitJuice => (
                                 <Link key={fruitJuice._id} to={`/dashboard/admin/fruit-juice/${fruitJuice.slug}`} className='fruitJuice-link'>
                                     <div className="card m-2" style={{ width: '18rem' }} key={fruitJuice._id}>
-                                        <img src={`http://localhost:8085/fruitJuice/fruit-photo/${fruitJuice._id}`} className="card-img-top" alt={fruitJuice.name} />
+                                        <img src={`https://cannedjuice-backend.onrender.com/fruitJuice/fruit-photo/${fruitJuice._id}`} className="card-img-top" alt={fruitJuice.name} />
                                         <div className="card-body">
                                             <h5 className="card-title">{fruitJuice.name}</h5>
                                             <p className="card-text">{fruitJuice.description}</p>

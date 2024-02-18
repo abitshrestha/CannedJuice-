@@ -24,7 +24,7 @@ const UpdateFruitJuice = () => {
     //get single product
     const getSingleProduct = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:8085/fruitJuices/${params.slug}`);
+            const { data } = await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuices/${params.slug}`);
             setId(data.fruitJuice._id);
             setName(data.fruitJuice.name);
             setDescription(data.fruitJuice.description);
@@ -44,7 +44,7 @@ const UpdateFruitJuice = () => {
     //get all category
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8085/category');
+            const { data } = await axios.get('https://cannedjuice-backend.onrender.com/category');
             if (data?.success) {
                 setCategories(data?.categories);
             }
@@ -64,7 +64,7 @@ const UpdateFruitJuice = () => {
             fruitJuiceData.append('category', category);
             fruitJuiceData.append('shipping',shipping);
             photo && fruitJuiceData.append('photo', photo);
-            const { data } = await axios.put(`http://localhost:8085/fruitJuices/${id}`, fruitJuiceData);
+            const { data } = await axios.put(`https://cannedjuice-backend.onrender.com/fruitJuices/${id}`, fruitJuiceData);
             if (data.success) {
                 toast.success('Fruit Juice updated Successfully.');
                 navigate('/dashboard/admin/fruit-juice');
@@ -80,7 +80,7 @@ const UpdateFruitJuice = () => {
         try {
             let answer = window.prompt('Are you sure you want to delete this?');
             if (!answer) return;
-            const { data } = await axios.delete(`http://localhost:8085/fruitJuices/${id}`);
+            const { data } = await axios.delete(`https://cannedjuice-backend.onrender.com/fruitJuices/${id}`);
             navigate('/dashboard/admin/products');
             toast.success('Product Deleted Successfully.');
         } catch (error) {
@@ -120,7 +120,7 @@ const UpdateFruitJuice = () => {
                                         </div>
                                     ) : (
                                         <div className='text-center'>
-                                            <img src={`http://localhost:8085/fruitJuice/fruit-photo/${id}`} alt='' height={'200px'} className='img img-responsive' />
+                                            <img src={`https://cannedjuice-backend.onrender.com/fruitJuice/fruit-photo/${id}`} alt='' height={'200px'} className='img img-responsive' />
                                         </div>
                                     )}
                                 </div>

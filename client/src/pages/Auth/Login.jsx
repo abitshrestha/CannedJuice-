@@ -16,7 +16,7 @@ const Login = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();
         try {
-            const {data}=await axios.post(`http://localhost:8085/login`,({email,password}));
+            const {data}=await axios.post(`https://cannedjuice-backend.onrender.com/login`,({email,password}));
             if(data.success){
                 toast.success(data.message);
                 setAuth({
