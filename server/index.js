@@ -16,6 +16,9 @@ connectDB();
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
+app.get('/',(req,res)=>{
+    res.send('hello world!');
+});
 app.use('/',authRoutes);
 app.use('/',categoryRoutes);
 app.use('/',productRoutes);
