@@ -4,6 +4,7 @@ import Layout from "../../components/Layout/Layout";
 import { useCart } from "../../context/cart";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage = () => {
     const [cart, setCart] = useCart();
@@ -13,6 +14,8 @@ const CheckoutPage = () => {
     const [city, setCity] = useState("");
     const [phone, setPhone] = useState("");
     const [errors, setErrors] = useState({});
+
+    const navigate=useNavigate();
 
     const totalPrice = () => {
         try {
@@ -81,7 +84,7 @@ const CheckoutPage = () => {
                 console.log(error);
                 if(error){
                     toast.success('Need to login!');
-                    window.location.href='/login';
+                    navigate('/login');
                 }
             }
         } else {
