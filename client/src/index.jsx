@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthProvider>
     <CartProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="https://canned-juice.vercel.app">
         <App />
       </BrowserRouter>
     </CartProvider>
