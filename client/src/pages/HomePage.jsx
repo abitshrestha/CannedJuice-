@@ -3,18 +3,19 @@ import Layout from '../components/Layout/Layout'
 import Landing from '../components/Layout/Landing';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinning';
 
 const HomePage = () => {
   const [fruitJuices, setFruitJuices] = useState([]);
-  const [total,setTotal]=useState(0);
-  const [loading,setLoading]=useState(false);
-  const [page,setPage]=useState(1);
-  const navigate=useNavigate();
-  
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+
   //get total fruitJuices
-  const getTotal=async()=>{
+  const getTotal = async () => {
     try {
-      const {data}=await axios.get('https://cannedjuice-backend.onrender.com/fruitJuice-count');
+      const { data } = await axios.get('https://cannedjuice-backend.onrender.com/fruitJuice-count');
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -26,36 +27,36 @@ const HomePage = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuicesList/${page}`);
-      setLoading(false);
       setFruitJuices(data.fruitJuices);
+      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   }
 
-  const handleReadmore=(fruitJuiceSlug)=>{
+  const handleReadmore = (fruitJuiceSlug) => {
     navigate(`/fruitJuices/${fruitJuiceSlug}`);
   }
 
   //load more
-  const loadMore=async()=>{
+  const loadMore = async () => {
     try {
       setLoading(true);
-      const {data}=await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuicesList/${page}`);
+      const { data } = await axios.get(`https://cannedjuice-backend.onrender.com/fruitJuicesList/${page}`);
       setLoading(false);
       //making new array concatenating different objects  
-      setFruitJuices([...fruitJuices,...data?.fruitJuices]);
+      setFruitJuices([...fruitJuices, ...data?.fruitJuices]);
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
   }
 
-  useEffect(()=>{
-    if(page===1) return;
+  useEffect(() => {
+    if (page === 1) return;
     loadMore();
-  },[page]);
+  }, [page]);
 
   useEffect(() => {
     getFruitJuices();
@@ -74,7 +75,11 @@ const HomePage = () => {
           <div className='col-md-1'></div>
           <div className='col-md-11'>
             <div className='d-flex flex-wrap'>
-              {
+              {loading ? (
+                <div className="spinner-container">
+                  <Spinner />
+                </div>
+              ) : (
                 fruitJuices?.map(fruitJuice => (
                   <div className="card m-2" style={{ width: '18rem' }} key={fruitJuice._id}>
                     <img src={`https://cannedjuice-backend.onrender.com/fruitJuice/fruit-photo/${fruitJuice._id}`} className="card-img-top" alt={fruitJuice.name} />
@@ -82,23 +87,20 @@ const HomePage = () => {
                       <h5 className="card-title">{fruitJuice.name}</h5>
                       <p className="card-text">{fruitJuice.description.substring(0, 30)}...</p>
                       <p className="card-text"> Rs. {fruitJuice.price}</p>
-                      <p className='readmore' onClick={()=>handleReadmore(fruitJuice.slug)}>Read more . . .</p>
-                      {/* <button className='btn btn-secondary ms-1' onClick={()=>{const newItem={...fruitJuice,quantity:1};setCart([...cart,newItem]);localStorage.setItem('cart',JSON.stringify([...cart,newItem]));toast.success('Item added to cart.')}}>Add to cart</button> */}
-                      {/* <button className='btn btn-primary ms-1'>Buy Now</button> */}
+                      <p className='readmore' onClick={() => handleReadmore(fruitJuice.slug)}>Read more . . .</p>
                     </div>
                   </div>
                 ))
-              }
+              )}
             </div>
             <div className='m-2 p-3'>
-              {fruitJuices && fruitJuices.length<total && (
-                <button className='btn btn-warning' onClick={(e)=>{e.preventDefault();setPage(page+1)}}>{loading?'Loading . . .':'Load More'}</button>
+              {fruitJuices && fruitJuices.length < total && (
+                <button className='btn btn-warning' onClick={(e) => { e.preventDefault(); setPage(page + 1) }}>{loading ? 'Loading . . .' : 'Load More'}</button>
               )}
             </div>
           </div>
         </div>
       </div>
-
     </Layout>
   )
 }
